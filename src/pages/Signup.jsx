@@ -1,35 +1,40 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import api from '../api/axios';
-import useAuthStore from '../store/authStore';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import api from "../api/axios";
+import useAuthStore from "../store/authStore";
 
 export default function Signup() {
-  const [form, setForm] = useState({ name: '', email: '', password: '', role: 'member' });
-  const [error, setError] = useState('');
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    role: "member",
+  });
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { login } = useAuthStore();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    setError('');
+    setError("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (form.password.length < 6) {
-      setError('Password must be at least 6 characters');
+      setError("Password must be at least 6 characters");
       return;
     }
     setLoading(true);
-    setError('');
+    setError("");
 
     try {
-      const { data } = await api.post('/auth/signup', form);
+      const { data } = await api.post("/auth/signup", form);
       login(data.user, data.token);
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (err) {
-      setError(err.response?.data?.message || 'Signup failed');
+      setError(err.response?.data?.message || "Signup failed");
     } finally {
       setLoading(false);
     }
@@ -71,7 +76,9 @@ export default function Signup() {
           </div>
 
           <div>
-            <label className="block text-sm text-zinc-400 mb-1.5">Password</label>
+            <label className="block text-sm text-zinc-400 mb-1.5">
+              Password
+            </label>
             <input
               type="password"
               name="password"
@@ -83,7 +90,7 @@ export default function Signup() {
             />
           </div>
 
-          <div>
+          {/* <div>
             <label className="block text-sm text-zinc-400 mb-1.5">Role</label>
             <select
               name="role"
@@ -94,7 +101,7 @@ export default function Signup() {
               <option value="member">Member</option>
               <option value="admin">Admin</option>
             </select>
-          </div>
+          </div> */}
 
           {error && (
             <p className="text-sm text-red-400 bg-red-950 border border-red-800 rounded px-3 py-2">
@@ -107,13 +114,16 @@ export default function Signup() {
             disabled={loading}
             className="w-full bg-white text-black text-sm font-medium py-2 rounded hover:bg-zinc-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? 'Creating account...' : 'Create account'}
+            {loading ? "Creating account..." : "Create account"}
           </button>
         </form>
 
         <p className="mt-6 text-sm text-zinc-500 text-center">
-          Already have an account?{' '}
-          <Link to="/login" className="text-zinc-300 hover:text-white transition-colors">
+          Already have an account?{" "}
+          <Link
+            to="/login"
+            className="text-zinc-300 hover:text-white transition-colors"
+          >
             Sign in
           </Link>
         </p>
