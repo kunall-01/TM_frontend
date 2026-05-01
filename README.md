@@ -6,7 +6,7 @@ A simple and clean task management web application where users can manage projec
 
 ## 🚀 Live Demo
 
-👉 [https://your-frontend-url.vercel.app](https://project-payjb.vercel.app/)
+👉 [https://project-payjb.vercel.app](https://project-payjb.vercel.app/)
 
 ---
 
@@ -49,7 +49,7 @@ src/
 ### 1. Clone the repository
 
 ```
-git clone [https://github.com/your-username/your-repo.git](https://github.com/kunall-01/TM_frontend.git)
+git clone [https://github.com/kunall-01/TM_frontend.git](https://github.com/kunall-01/TM_frontend.git)
 cd frontend
 ```
 
